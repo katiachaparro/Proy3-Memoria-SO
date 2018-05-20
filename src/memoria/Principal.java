@@ -346,16 +346,14 @@ public class Principal extends javax.swing.JFrame {
     }
  
     public void setTabla(int tamano, ListaProcesos lista){
-       String arreglo [][] = new String [tamano][5];
+        
+        String arreglo [][] = new String [tamano][4];
        for(int i = 0;i<tamano; i++){
             Proceso _proceso = lista.getProceso(i);
              arreglo[i][0] = _proceso.getNombreProceso();
              arreglo[i][1] = String.valueOf(_proceso.getTiempoLlegada());
              arreglo[i][2] = String.valueOf(_proceso.getTiempoRafaga());
-             arreglo[i][3] = _proceso.getEstado();
-            
-          
-           
+             arreglo[i][3] = _proceso.getEstado();        
        }
        _procesos= lista;
         tabla.setModel(new DefaultTableModel(
@@ -366,6 +364,8 @@ public class Principal extends javax.swing.JFrame {
         ));
         panel3.setViewportView(tabla);
         this.validate();
+        
+       
     }
     public void setRafaga(ListaProcesos pro){
         jLabel2.setText("Rafaga: " + pro.getRafaga());

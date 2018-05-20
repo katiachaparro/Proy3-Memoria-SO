@@ -24,13 +24,13 @@ public class Planificar {
         //lista.imprimir();
         Principal a = new Principal();
         a.setVisible(true);
-        int duracionRafaga= 1;
-        RoundRobin r = new RoundRobin(lista,a,1000);
+        int duracionRafaga = 1;
+        RoundRobin r = new RoundRobin(lista, a, 1000);
         //NUESTROS ALGORITMOS
         //SJF A = new SJF(lista, a,10000);
         //FCFS f = new FCFS(lista,a,2);
         //ColasMulitNivel g = new ColasMulitNivel(lista,a,1000);
         //f.imprimirList(f.ordenarPorLlegada(lista,0));
     }
-    
+
 }

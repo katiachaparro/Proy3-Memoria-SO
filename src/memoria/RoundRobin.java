@@ -31,18 +31,24 @@ public class RoundRobin {
                 //Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
             }   
          Proceso segundo;
-         Proceso anterior;
+         
+         
         primero.setEstado("Ejecutado"); 
+        try{
         _ventana.setTabla(_procesos.tamano(), _procesos);
+        }catch(Exception e){
+        }
+        
         for(int a = 0 ;a< primero.getTiempoRafaga();a++){
             primero.setTEjecutado(primero.getTEjecutado() + 1);
             _ventana.setRafaga(_procesos);
             _procesos.setRafaga(_procesos.getRafaga() + 1);
-            System.out.println(_procesos.getRafaga());
-            if(orden +1 < _procesos.tamano()){
+            System.out.println(primero.getNombreProceso());
+            System.out.println(primero.getTEjecutado());
+            if(orden +1 < _procesos.tamano() && primero.getTEjecutado()!= primero.getTiempoRafaga()){
                 segundo= (Proceso)_procesos.getProceso(orden+1);
                 
-                if(a +1 > _procesos.getQuantun()){
+                if(a +2 >_procesos.getQuantun()){
                    Proceso aux = segundo;
                    _procesos.setProceso(orden+1, primero);
                    _procesos.setProceso(orden,aux);
@@ -52,25 +58,37 @@ public class RoundRobin {
                    primero.setEstado("Preparado");
                     _ventana.setTabla(_procesos.tamano(), _procesos);
                 }
+            }else{
+               if(primero.getTEjecutado()== primero.getTiempoRafaga()){
+                   a= primero.getTiempoRafaga();
+               }
+               
             }
             
             
             
         }
+        try{}catch(Exception e){
+         _ventana.setTabla(_procesos.tamano(), _procesos);
+        }
         
-        _ventana.setTabla(_procesos.tamano(), _procesos);
+       
         try {
                 Thread.sleep(tiempora);
             } catch (InterruptedException ex) {
                // Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
             } 
-        if(primero.getTiempoNoEjecutado() <= 0){
+        if(primero.getTiempoNoEjecutado()<= 0){
         primero.setEstado("Terminado");
         }
        
         orden ++;
-        
+        try{
         _ventana.setTabla(_procesos.tamano(), _procesos);
+        }catch(Exception e){
+        
+        }
+        
         if(orden == _procesos.tamano()){
             condicion = false;
         }
