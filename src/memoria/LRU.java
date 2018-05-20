@@ -14,6 +14,7 @@ public class LRU {
         _memoriaRam = memoriaRam;
         _nueva = nueva;
         _memoriaVirtual = memoriaVirtual;
+        algoritmo();
     }
     public void algoritmo(){
         if(hayMarco()){
