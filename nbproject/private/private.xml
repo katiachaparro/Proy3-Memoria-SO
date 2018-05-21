@@ -4,8 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Escurra/Desktop/octavo/Memoria/src/memoria/Proceso.java</file>
-            <file>file:/C:/Users/Escurra/Desktop/octavo/Memoria/src/memoria/Pagina.java</file>
-            <file>file:/C:/Users/Escurra/Desktop/octavo/Memoria/src/memoria/LRU.java</file>
+            <file>file:/C:/Users/Escurra/Desktop/octavo/Memoria/src/memoria/RoundRobin.java</file>
+            <file>file:/C:/Users/Escurra/Desktop/octavo/Memoria/src/memoria/Principal.java</file>
+            <file>file:/C:/Users/Escurra/Desktop/octavo/Memoria/src/memoria/Planificar.java</file>
+            <file>file:/C:/Users/Escurra/Desktop/octavo/Memoria/src/memoria/ListaProcesos.java</file>
+            <file>file:/C:/Users/Escurra/Desktop/octavo/Memoria/src/memoria/MisProcesos.txt</file>
         </group>
     </open-files>
 </project-private>

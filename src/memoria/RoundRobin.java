@@ -21,6 +21,9 @@ public class RoundRobin {
     }
     public void  algoritmo(){
     while(condicion){
+        /*obtenemos el proceso y lo colocamos como preparado
+        obtenemos 3 paginas del proceso y colocamos en memoria Ram
+        las demas las colocamos en memoria virtual*/
         Proceso primero = (Proceso)_procesos.getProceso(orden);
         primero.setEstado("Preparado");
         _ventana.setTabla(_procesos.tamano(), _procesos);
@@ -30,21 +33,23 @@ public class RoundRobin {
             } catch (InterruptedException ex) {
                 //Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
             }   
-         Proceso segundo;
+        Proceso segundo;
          
          
-        primero.setEstado("Ejecutado"); 
-        try{
-        _ventana.setTabla(_procesos.tamano(), _procesos);
-        }catch(Exception e){
-        }
+        primero.setEstado("Ejecutando"); 
+        try{_ventana.setTabla(_procesos.tamano(), _procesos);}catch(Exception e){}
         
         for(int a = 0 ;a< primero.getTiempoRafaga();a++){
+            // ejecutamos el proceso, una rafaga a la vez
             primero.setTEjecutado(primero.getTEjecutado() + 1);
-            _ventana.setRafaga(_procesos);
+            try{_ventana.setRafaga(_procesos);}catch(Exception e){};
             _procesos.setRafaga(_procesos.getRafaga() + 1);
+            
+            
             System.out.println(primero.getNombreProceso());
             System.out.println(primero.getTEjecutado());
+            
+            
             if(orden +1 < _procesos.tamano() && primero.getTEjecutado()!= primero.getTiempoRafaga()){
                 segundo= (Proceso)_procesos.getProceso(orden+1);
                 
@@ -56,7 +61,8 @@ public class RoundRobin {
                    a= primero.getTiempoRafaga();
                    orden --;
                    primero.setEstado("Preparado");
-                    _ventana.setTabla(_procesos.tamano(), _procesos);
+                   try{_ventana.setTabla(_procesos.tamano(), _procesos);}catch(Exception e){}
+                    
                 }
             }else{
                if(primero.getTEjecutado()== primero.getTiempoRafaga()){
@@ -68,9 +74,7 @@ public class RoundRobin {
             
             
         }
-        try{}catch(Exception e){
-         _ventana.setTabla(_procesos.tamano(), _procesos);
-        }
+        try{_ventana.setTabla(_procesos.tamano(), _procesos);}catch(Exception e){}
         
        
         try {
@@ -83,9 +87,7 @@ public class RoundRobin {
         }
        
         orden ++;
-        try{
-        _ventana.setTabla(_procesos.tamano(), _procesos);
-        }catch(Exception e){
+        try{_ventana.setTabla(_procesos.tamano(), _procesos);}catch(Exception e){
         
         }
         

@@ -214,12 +214,7 @@ public class Principal extends javax.swing.JFrame {
         panel3.setBackground(new java.awt.Color(255, 255, 255));
 
         tabla.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            new String [3][4],
             new String [] {
                 "Proceso", "Tiempo de LLegada", "Tiempo de Rafaga", "Estado"
             }
@@ -346,8 +341,9 @@ public class Principal extends javax.swing.JFrame {
     }
  
     public void setTabla(int tamano, ListaProcesos lista){
-        
-        String arreglo [][] = new String [tamano][4];
+       try{
+       System.out.println("tamaño" + tamano);
+       String arreglo [][] = new String [3][4];
        for(int i = 0;i<tamano; i++){
             Proceso _proceso = lista.getProceso(i);
              arreglo[i][0] = _proceso.getNombreProceso();
@@ -356,15 +352,20 @@ public class Principal extends javax.swing.JFrame {
              arreglo[i][3] = _proceso.getEstado();        
        }
        _procesos= lista;
-        tabla.setModel(new DefaultTableModel(
+       tabla.updateUI();
+       tabla.setModel(new DefaultTableModel(
             arreglo,
-            new String [] {
+             new String [] {
                 "Proceso", "Tiempo de LLegada", "Tiempo de Rafaga", "Estado"
-            }
-        ));
-        panel3.setViewportView(tabla);
+             }
+         ));
+        //panel3.setViewportView(tabla);
         this.validate();
-        
+       // this.validate();
+       }catch(ArrayIndexOutOfBoundsException e){
+       
+           System.out.println("error aca");
+       }
        
     }
     public void setRafaga(ListaProcesos pro){

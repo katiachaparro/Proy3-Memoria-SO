@@ -12,11 +12,29 @@ public class ListaProcesos {
     private final ArrayList<Proceso> list;
     private int rafaga =0;
     private int quantun = 4;
+    private Pagina[] lista_paginas_ram;
+    private ArrayList<Pagina> lista_paginas_virtual;
    // private Principal principal = null;
     public ListaProcesos(){
         list = new ArrayList<>();
     }
+    // utilizamos Lista de procesos para mantener las diferentes memorias (ram y virtual)
+    // Array de paginas en Memoria Ram
+    public void setArrayPaginasRam(Pagina[] lista){
+        lista_paginas_ram = lista;
+    }
+    public Pagina[] getArrayPaginasRam(){
+        return lista_paginas_ram;
+    }
     
+    
+    // list de paginas en memoria virtual
+    public void setListaPaginasVirtual(ArrayList<Pagina> lista_paginas){
+        lista_paginas_virtual = lista_paginas;
+    }
+    public ArrayList<Pagina> getListaPaginasVirtual(){
+        return lista_paginas_virtual;
+    }
     /*public void setPrincipal(Principal princi){
         principal = princi;
     }  
