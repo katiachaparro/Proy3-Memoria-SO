@@ -5,11 +5,12 @@
  */
 package memoria;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Escurra
+ * @author Escurra & Katia
  */
 public class Pagina {
     Proceso _padre;
@@ -20,10 +21,17 @@ public class Pagina {
     public Pagina(Proceso padre,int identificador){
         _identificador = identificador;
         _padre = padre;
+        _instrucciones = new ArrayList<>();
     }
     public void add_instruccion(String instruccion){
         _instrucciones.add(instruccion);
     }
+    public List<String> getListadeInstrucciones(){
+        return _instrucciones;
+    }
+    public String getInstruccion(int posicion){
+        return _instrucciones.get(posicion);
+    } 
     public void procesado(){
         _procesado = true;
     }
