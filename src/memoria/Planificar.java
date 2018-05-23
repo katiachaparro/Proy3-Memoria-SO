@@ -46,7 +46,7 @@ public class Planificar {
         Ventana a = new Ventana();
         a.setVisible(true);
         //int duracionRafaga= 1;
-        RoundRobin r = new RoundRobin(lista,a,10000);
+        RoundRobin r = new RoundRobin(lista,a,1000);
         
         
         System.out.println("*********************");

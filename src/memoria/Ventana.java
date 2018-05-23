@@ -205,7 +205,7 @@ public class Ventana extends JFrame {
 				"New column"
 			}
 		));
-		table_2.setBorder(new LineBorder(Color.green, 1, true));
+		table_2.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		table_2.setBounds(22, 46, 601, 60);
 		panel_2.add(table_2);
 		
@@ -275,7 +275,7 @@ public class Ventana extends JFrame {
        
     }
     public void setRam(Pagina _memoriaRam[] ){
-        String arreglo [][] = new String [10][1];
+        String arreglo [][] = new String [_memoriaRam.length][1];
         for(int i = 0;i<_memoriaRam.length; i++){
              Pagina _pagina = _memoriaRam[i];
              if(_pagina != null){
@@ -301,7 +301,7 @@ public class Ventana extends JFrame {
         this.validate();
     }
      public void setVirtual(ArrayList<Pagina> _memoriaV ){
-        String arreglo [][] = new String [10][1];
+        String arreglo [][] = new String [_memoriaV.size()][1];
         for(int i = 0;i<_memoriaV.size(); i++){
              Pagina _pagina = _memoriaV.get(i);
              
@@ -322,5 +322,28 @@ public class Ventana extends JFrame {
         
        
         this.validate();
+    }
+    public void setPagina(Pagina pagina){
+        String arreglo [][] = new String [pagina.getInstruccion().size()][3];
+         for(int i = 0;i<pagina.getInstruccion().size(); i++){
+          arreglo[i][0] = pagina.getProceso().getNombreProceso();
+          arreglo[i][1] = String.valueOf(pagina.getIdentificador());
+          arreglo[i][2] = pagina.getListadeInstrucciones().get(i);
+          table_1.removeAll();
+          table_1.setBorder(new LineBorder(Color.red, 1, true));
+          table_1.setAutoscrolls(true);
+          table_1.setModel(new DefaultTableModel(
+             arreglo,
+              new String [] {
+                "New column", "New column", "New column"
+              }
+          ));
+        try {
+                Thread.sleep(1500);
+            } catch (InterruptedException ex) {
+                //Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        
     }
 }

@@ -33,7 +33,7 @@ public class RoundRobin {
         
         // si tenemos las paginas en disco duro , las cargamos en ram y virtual
         if(primero.getListadePagina()!= null){
-            Cpu cpu = new Cpu(_procesos,primero,_ventana);
+            Cpu cpu = new Cpu(_procesos,primero,_ventana,tiempora);
             cpu.cargarRamInicialmente();
         }
         
@@ -62,7 +62,7 @@ public class RoundRobin {
             primero.setTEjecutado(primero.getTEjecutado() + 1);
             
             //EJECUTAMOS UNA PAGINA
-            Cpu c = new Cpu(_procesos,primero,_ventana);        
+            Cpu c = new Cpu(_procesos,primero,_ventana,tiempora);        
             c.ejecutamosPagina();
      
             
