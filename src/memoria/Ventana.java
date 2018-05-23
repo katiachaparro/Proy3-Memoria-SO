@@ -27,7 +27,6 @@ import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.Border;
 
 public class Ventana extends JFrame {
 
@@ -78,6 +77,7 @@ public class Ventana extends JFrame {
 		contentPane.add(btnEjecutar);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(10, 216, 664, 117);
 		contentPane.add(scrollPane);
 		
@@ -98,7 +98,7 @@ public class Ventana extends JFrame {
 			}
 		));
 		table_4.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table_4.setBounds(34, 43, 601, 60);
+		table_4.setBounds(21, 46, 601, 60);
 		panel_1.add(table_4);
 		
 		JLabel label_2 = new JLabel("Pagina");
@@ -106,7 +106,9 @@ public class Ventana extends JFrame {
 		panel_1.add(label_2);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 62, 664, 128);
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setEnabled(false);
+		scrollPane_1.setBounds(10, 62, 674, 117);
 		contentPane.add(scrollPane_1);
 		
 		JPanel panel = new JPanel();
@@ -117,6 +119,8 @@ public class Ventana extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
@@ -131,7 +135,7 @@ public class Ventana extends JFrame {
 		table.setRowSelectionAllowed(false);
 		table.setEnabled(false);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table.setBounds(10, 54, 390, 48);
+		table.setBounds(10, 54, 390, 50);
 		panel.add(table);
 		
 		table_1 = new JTable();
@@ -147,7 +151,7 @@ public class Ventana extends JFrame {
 			}
 		));
 		table_1.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table_1.setBounds(429, 54, 225, 48);
+		table_1.setBounds(420, 54, 225, 48);
 		panel.add(table_1);
 		
 		JLabel label = new JLabel("Proceso");
@@ -180,6 +184,7 @@ public class Ventana extends JFrame {
 		panel.add(label_9);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_2.setBounds(10, 357, 664, 128);
 		contentPane.add(scrollPane_2);
 		
@@ -201,7 +206,7 @@ public class Ventana extends JFrame {
 			}
 		));
 		table_2.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table_2.setBounds(34, 46, 601, 60);
+		table_2.setBounds(22, 46, 601, 60);
 		panel_2.add(table_2);
 		
 		JLabel label_1 = new JLabel("Pagina");
@@ -209,6 +214,7 @@ public class Ventana extends JFrame {
 		panel_2.add(label_1);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_3.setBounds(10, 514, 664, 127);
 		contentPane.add(scrollPane_3);
 		
@@ -229,7 +235,7 @@ public class Ventana extends JFrame {
 			}
 		));
 		table_3.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table_3.setBounds(30, 46, 611, 60);
+		table_3.setBounds(24, 46, 611, 48);
 		panel_3.add(table_3);
 		
 		JLabel label_3 = new JLabel("Proceso");
