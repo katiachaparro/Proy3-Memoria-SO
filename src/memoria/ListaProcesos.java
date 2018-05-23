@@ -12,29 +12,13 @@ public class ListaProcesos {
     private final ArrayList<Proceso> list;
     private int rafaga =0;
     private int quantun = 4;
+    private ArrayList<Pagina> lista_paginas_virtual = new ArrayList<Pagina>();
     private Pagina[] lista_paginas_ram;
-    private ArrayList<Pagina> lista_paginas_virtual;
    // private Principal principal = null;
     public ListaProcesos(){
         list = new ArrayList<>();
     }
-    // utilizamos Lista de procesos para mantener las diferentes memorias (ram y virtual)
-    // Array de paginas en Memoria Ram
-    public void setArrayPaginasRam(Pagina[] lista){
-        lista_paginas_ram = lista;
-    }
-    public Pagina[] getArrayPaginasRam(){
-        return lista_paginas_ram;
-    }
     
-    
-    // list de paginas en memoria virtual
-    public void setListaPaginasVirtual(ArrayList<Pagina> lista_paginas){
-        lista_paginas_virtual = lista_paginas;
-    }
-    public ArrayList<Pagina> getListaPaginasVirtual(){
-        return lista_paginas_virtual;
-    }
     /*public void setPrincipal(Principal princi){
         principal = princi;
     }  
@@ -81,7 +65,7 @@ public class ListaProcesos {
             System.out.print("\n");
         }
     }
-    private BufferedReader leerArchivo(String file){
+    private BufferedReader abrirArchivo(String file){
       
         BufferedReader br = null;
         try {
@@ -98,23 +82,70 @@ public class ListaProcesos {
       }
         return br;
     }
-    public void cargarList(String file) {
-         String lee;
-         BufferedReader br = leerArchivo(file);
+    
+    private String leerArchivo(String file){
+        String builder = "";
+        String leer = "";
+        BufferedReader br = abrirArchivo(file);
         if(br !=null) {
              try {
-                 while ((lee = br.readLine()) != null) {
-                     String[] linea = lee.split(",");
-                     Proceso p = new Proceso();
-                     p.setNombreProceso(linea[0]);
-                     p.setTiempoLlegada(Integer.parseInt(linea[1]));
-                     p.setTiempoRafaga(Integer.parseInt(linea[2]));
-                     p.setPrioridad(Integer.parseInt(linea[3]));
-                     list.add(p);
+                 while ((builder = br.readLine()) != null) {
+                      leer += builder;
                  }} catch (IOException ex) {
                  Logger.getLogger(ListaProcesos.class.getName()).log(Level.SEVERE, null, ex);
              }
-        }
+        }  
+        return leer;   
+    }
+    public String [] getProcesos(String file){
+        String procesos [] = leerArchivo(file).split("-");
+         return procesos;
+    }
+    //creo los proceso con sus respectivas paginas
+    public void cargarList(String file) {
+        //obtengos todos los procesos
+         String lee [] = getProcesos(file);
+         //los recorro
+         for(int i= 1;i<lee.length;i++){
+             //creo un proceso
+            Proceso proceso = new Proceso();
+            //Obtengo su nombre
+            String elem [] = lee[i].split("\\{");
+            proceso.setNombreProceso(elem[0]);
+            //Obtengo sus atributos
+            int inicio = lee[i].indexOf("{")+1;
+            int fin = lee[i].indexOf("}");
+            String attrProceso = lee[i].substring(inicio, fin);
+            String attrArray [] = attrProceso.split(";");
+            //Obetngo el tiempo de llegada
+            String tiempoLlArray [] = attrArray[0].split(":"); 
+            proceso.setTiempoLlegada(Integer.parseInt(tiempoLlArray[1].trim()));
+            //Obetengo el tiempo de rafaga
+            String tiempoRArray [] = attrArray[1].split(":"); 
+            proceso.setTiempoRafaga(Integer.parseInt(tiempoRArray[1].trim()));
+            //Obtengo las paginas
+            int inicioP= attrArray[2].indexOf("[") +1;
+            int finP = attrArray[2].indexOf("]");
+            String paginasArray = attrArray[2].substring(inicioP, finP);
+            //Obterngo los atributos de todas las paginas paginas
+            String attrPaginaArray [] = paginasArray.split(",");
+            for(int x=0; x<attrPaginaArray.length;x++){
+                //obtengo el identificador de la pagina
+                String identificadorArray[] = attrPaginaArray[x].split(":");
+                //creo una paginas
+                Pagina pag = new Pagina(proceso,Integer.parseInt(identificadorArray[0].trim()));
+                //obtengo las instruccioines
+                String inst []= identificadorArray[1].split("/n");
+                for(int a=0;a<inst.length;a++){
+                    pag.add_instruccion(inst[a]);
+                }
+                //guardo la pagina en el proceso
+                proceso.agregarPagina(pag);
+                
+                
+            }
+            list.add(proceso);
+         }
     }
     public ListaProcesos ordenarPorTiempoLlegada(ListaProcesos lista,int orden){
         for(int a=orden ;a<lista.tamano();a++){
@@ -132,5 +163,22 @@ public class ListaProcesos {
                 }
      }
         return lista;
+    }
+        // utilizamos Lista de procesos para mantener las diferentes memorias (ram y virtual)
+    // Array de paginas en Memoria Ram
+    public void setArrayPaginasRam(Pagina[] lista){
+        lista_paginas_ram = lista;
+    }
+    public Pagina[] getArrayPaginasRam(){
+        return lista_paginas_ram;
+    }
+    
+    
+    // list de paginas en memoria virtual
+    public void setListaPaginasVirtual(ArrayList<Pagina> lista_paginas){
+        lista_paginas_virtual = lista_paginas;
+    }
+    public ArrayList<Pagina> getListaPaginasVirtual(){
+        return lista_paginas_virtual;
     }
 }

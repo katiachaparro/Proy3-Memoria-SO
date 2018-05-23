@@ -27,7 +27,7 @@ public class Cpu {
         int aleatorio = 0;
         for(int a= 0 ;a<3;a++){
             while(ramdon){
-                aleatorio =  (int) (Math.random() * _proceso.getListaPaginasDisco().size() -1) + 1;
+               aleatorio =  (int) (Math.random() * (_proceso.getListadePagina().size() -1) +1);
                 ramdon = false;
                 for (int i = 0 ; i< 3;i++){   
                     if(numeros_aleatorios [i] == aleatorio){
@@ -38,19 +38,33 @@ public class Cpu {
             numeros_aleatorios[a] = aleatorio;
             ramdon= true;
         }
-        ArrayList<Pagina> paginas = _proceso.getListaPaginasDisco();
+        ArrayList<Pagina> paginas = new ArrayList<Pagina>();
+        
         //grabamos en memoria Ram los 3 aleatorios
         for(int i=0;i<3;i++){
-            System.out.println(numeros_aleatorios[i]);
-            LRU algoritmo = new LRU(_lista,_proceso.getListaPaginasDisco().get(numeros_aleatorios[i]));
-            _proceso.getListaPaginasDisco().remove(numeros_aleatorios[i]);
             
+            LRU algoritmo = new LRU(_lista,_proceso.getListadePagina().get(numeros_aleatorios[i]));
+            System.out.println("cargado en memoria la pagina" +_proceso.getListadePagina().get(numeros_aleatorios[i]).getIdentificador() );
+           
+            paginas.add(_proceso.getListadePagina().get(numeros_aleatorios[i]));
         }
+        
+        for(Pagina p : paginas){
+            _proceso.getListadePagina().remove(p);
+        }
+       
+           
+            
+         
         // el resto a memoria virtual
-        _proceso.getListaPaginasDisco().forEach((_pa) -> {
-            _lista.getListaPaginasVirtual().add(_pa);
-        });
-        _proceso.setEstado("Hola");
+        if(_proceso.getListadePagina() !=null){
+            for(Pagina pa : _proceso.getListadePagina()){
+                _lista.getListaPaginasVirtual().add(pa);
+            }
+         
+        }
+        
+        
         
         
         

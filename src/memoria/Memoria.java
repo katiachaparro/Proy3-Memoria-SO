@@ -15,7 +15,13 @@ public class Memoria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ListaProcesos lista = new ListaProcesos();
+        lista.cargarList("MisProcesos.txt");
+        /*String procesos [] = lista.getProcesos("MisProcesos.txt");
+        for(int i=1; i<procesos.length;i++){
+            System.out.println(procesos[i]);
+        }*/
+        
     }
     
 }

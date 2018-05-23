@@ -30,8 +30,8 @@ public class RoundRobin {
         _ventana.setTabla(_procesos.tamano(), _procesos);
         _ventana.setRafaga(_procesos);
         
-        if(primero.getListaPaginasDisco() != null){
-            Cpu cpu = new Cpu();
+        if(primero.getListadePagina()!= null){
+            Cpu cpu = new Cpu(_procesos,primero);
             cpu.cargarRamInicialmente();
         }else{
             Cpu cpu = new Cpu();

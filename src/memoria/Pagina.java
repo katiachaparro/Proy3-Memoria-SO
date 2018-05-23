@@ -5,25 +5,36 @@
  */
 package memoria;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Escurra
+ * @author Escurra & Katia
  */
 public class Pagina {
     Proceso _padre;
     int _identificador;
-    List <String> _instrucciones;
+    ArrayList <String> _instrucciones;
     boolean _procesado = false;
     
     public Pagina(Proceso padre,int identificador){
         _identificador = identificador;
         _padre = padre;
+        _instrucciones = new ArrayList<String>();
+    }
+    public int getIdentificador(){
+        return _identificador;
     }
     public void add_instruccion(String instruccion){
         _instrucciones.add(instruccion);
     }
+    public List<String> getListadeInstrucciones(){
+        return _instrucciones;
+    }
+    public ArrayList<String> getInstruccion(){
+        return _instrucciones;
+    } 
     public void procesado(){
         _procesado = true;
     }
