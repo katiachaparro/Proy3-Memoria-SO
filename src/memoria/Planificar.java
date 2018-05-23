@@ -23,8 +23,8 @@ public class Planificar {
     public static void main(String[] args) {
         ListaProcesos lista = new ListaProcesos();
         lista.cargarList("MisProcesos.txt");
-        lista.setArrayPaginasRam(new Pagina[5]);       
-        lista.setQuantun(4);
+        lista.setArrayPaginasRam(new Pagina[4]);       
+        lista.setQuantun(3);
         Ventana a = new Ventana();
         a.setVisible(true);
         RoundRobin r = new RoundRobin(lista,a,1000);

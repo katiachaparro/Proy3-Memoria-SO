@@ -335,6 +335,7 @@ public class Ventana extends JFrame {
         this.validate();
     }
     public void setPagina(Pagina pagina, ListaProcesos lista){
+        if(pagina!=null){
         String arreglo [][] = new String [pagina.getInstruccion().size()][3];
          for(int i = 0;i<pagina.getInstruccion().size(); i++){
           arreglo[i][0] = pagina.getProceso().getNombreProceso();
@@ -358,8 +359,8 @@ public class Ventana extends JFrame {
         lista.getHistorial().add(pagina);
         String arregloh [][] = new String [lista.getHistorial().size()][2];
          for(int i = 0;i<lista.getHistorial().size(); i++){
-             arregloh[i][0] = lista.getHistorial().get(i).getProceso().getNombreProceso();
-             arregloh[i][1] = String.valueOf(lista.getHistorial().get(i).getIdentificador());
+             arregloh[(lista.getHistorial().size()-1)-i][0] = lista.getHistorial().get(i).getProceso().getNombreProceso();
+             arregloh[(lista.getHistorial().size()-1)-i][1] = String.valueOf(lista.getHistorial().get(i).getIdentificador());
             
              table_3.removeAll();
              table_3.setBorder(new LineBorder(Color.red, 1, true));
@@ -371,6 +372,8 @@ public class Ventana extends JFrame {
                  }
              ));
          }
+        }
+        
         
     }
     private void btnEjecutarActionPerformed(ActionEvent evt) {

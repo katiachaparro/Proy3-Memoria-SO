@@ -83,16 +83,26 @@ public class Cpu {
         for(int i = 0;i< _memoriaRam.length; i++){
             
             if(_memoriaRam[i]!=null &&_memoriaRam[i].getProceso() == _proceso && marco ==false){
+                boolean repetido = false;
+                for(Pagina p : _lista.getHistorial()  ){
+                    if(p==_memoriaRam[i]){
+                        repetido = true;
+                    }
+                }
+                if(!repetido){
                 marco = true;
+                
                 _paginaObtenida = _memoriaRam[i];
+                }
+                
                
             }
-            if(marco == true && i+1 < _memoriaRam.length){
-                _memoriaRam[i] = _memoriaRam[i+1];
-            }
-            if(marco == true && i+1 == _memoriaRam.length){
-                _memoriaRam[i]= null;
-            }
+           // if(marco == true && i+1 < _memoriaRam.length){
+           //     _memoriaRam[i] = _memoriaRam[i+1];
+           // }
+           // if(marco == true && i+1 == _memoriaRam.length){
+           //     _memoriaRam[i]= null;
+           //}
         }
         
         // estaba en Ram , actualizar UI
@@ -136,16 +146,25 @@ public class Cpu {
              
             for(int i = 0;i< _memoria.length; i++){
                 if(_memoria[i] != null &&_memoria[i].getProceso() == _proceso && marco ==false){
-                    marco = true;
-                    _paginaObtenida = _memoria[i];
+                       boolean repetido = false;
+                for(Pagina p : _lista.getHistorial()  ){
+                    if(p==_memoriaRam[i]){
+                        repetido = true;
+                    }
+                }
+                if(!repetido){
+                marco = true;
+                
+                _paginaObtenida = _memoriaRam[i];
+                }
 
                 }
-                if(marco == true && i+1 < _memoria.length){
-                    _memoria[i] = _memoria[i+1];
-                }
-                if(marco == true && i+1 == _memoria.length){
-                    _memoria[i]= null;
-                }
+                //if(marco == true && i+1 < _memoria.length){
+                //    _memoria[i] = _memoria[i+1];
+                //}
+                //if(marco == true && i+1 == _memoria.length){
+                //    _memoria[i]= null;
+                //}
             }
             
             _lista.setPagina(_paginaObtenida);
