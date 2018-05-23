@@ -36,7 +36,8 @@ public class Ventana extends JFrame {
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
-
+        private JButton btnEjecutar ;
+        static Ventana  frame;
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +45,7 @@ public class Ventana extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ventana frame = new Ventana();
+					 frame = new Ventana();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,13 +65,23 @@ public class Ventana extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnEjecutar = new JButton("Run");
+		btnEjecutar = new JButton("Run");
 		btnEjecutar.setBounds(559, 11, 87, 41);
 		btnEjecutar.setIcon(new ImageIcon(Ventana.class.getResource("/memoria/play-button .png")));
 		btnEjecutar.setSelectedIcon(new ImageIcon(Ventana.class.getResource("/memoria/play-button .png")));
 		btnEjecutar.setBackground(new Color(0, 204, 51));
 		btnEjecutar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                            System.out.println("doy click");
+                            ListaProcesos lista = new ListaProcesos();
+                            lista.cargarList("MisProcesos.txt");
+                            lista.setArrayPaginasRam(new Pagina[5]);       
+                            lista.setQuantun(4);
+                            //Ventana a = new Ventana();
+                            //a.setVisible(true);
+                            
+                            RoundRobin r = new RoundRobin(lista,frame,1000);
+             
 			}
 		});
 		contentPane.setLayout(null);
@@ -323,7 +334,7 @@ public class Ventana extends JFrame {
        
         this.validate();
     }
-    public void setPagina(Pagina pagina){
+    public void setPagina(Pagina pagina, ListaProcesos lista){
         String arreglo [][] = new String [pagina.getInstruccion().size()][3];
          for(int i = 0;i<pagina.getInstruccion().size(); i++){
           arreglo[i][0] = pagina.getProceso().getNombreProceso();
@@ -344,6 +355,25 @@ public class Ventana extends JFrame {
                 //Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
             }   
         }
+        lista.getHistorial().add(pagina);
+        String arregloh [][] = new String [lista.getHistorial().size()][2];
+         for(int i = 0;i<lista.getHistorial().size(); i++){
+             arregloh[i][0] = lista.getHistorial().get(i).getProceso().getNombreProceso();
+             arregloh[i][1] = String.valueOf(lista.getHistorial().get(i).getIdentificador());
+            
+             table_3.removeAll();
+             table_3.setBorder(new LineBorder(Color.red, 1, true));
+             table_3.setAutoscrolls(true);
+             table_3.setModel(new DefaultTableModel(
+                arregloh,
+                 new String [] {
+                   "New column", "New column"
+                 }
+             ));
+         }
         
+    }
+    private void btnEjecutarActionPerformed(ActionEvent evt) {
+    System.out.println("doy click");
     }
 }

@@ -15,6 +15,10 @@ public class ListaProcesos {
     private ArrayList<Pagina> lista_paginas_virtual = new ArrayList<Pagina>();
     private Pagina[] lista_paginas_ram;
     private Pagina pagina_ejecutada;
+    private ArrayList<Pagina> historial  = new ArrayList<Pagina>();
+    public ArrayList<Pagina> getHistorial(){
+        return historial;
+    }
    // private Principal principal = null;
     public ListaProcesos(){
         list = new ArrayList<>();

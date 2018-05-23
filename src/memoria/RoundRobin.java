@@ -6,7 +6,7 @@ import java.util.logging.Logger;
  *
  * @author Escurra
  */
-public class RoundRobin {
+public class RoundRobin implements Runnable {
     private ListaProcesos _procesos;
     private Ventana _ventana;
     private int orden = 0;
@@ -119,4 +119,9 @@ public class RoundRobin {
         }
     }
  }
+
+    @Override
+    public void run() {
+     algoritmo();
+    }
 }

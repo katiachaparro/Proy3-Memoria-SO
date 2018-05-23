@@ -103,7 +103,7 @@ public class Cpu {
            
             System.out.println("encontre la pagina");
             _lista.setPagina(_paginaObtenida);
-            _ventana.setPagina(_paginaObtenida);
+            _ventana.setPagina(_paginaObtenida,_lista);
             
             
             
@@ -149,7 +149,7 @@ public class Cpu {
             }
             
             _lista.setPagina(_paginaObtenida);
-            _ventana.setPagina(_paginaObtenida);
+            _ventana.setPagina(_paginaObtenida,_lista);
             _lista.setArrayPaginasRam(_lista.getArrayPaginasRam());
             try {
                 Thread.sleep(_tiempo);
