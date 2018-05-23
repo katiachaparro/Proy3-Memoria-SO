@@ -26,8 +26,19 @@ public class RoundRobin {
         las demas las colocamos en memoria virtual*/
         Proceso primero = (Proceso)_procesos.getProceso(orden);
         primero.setEstado("Preparado");
+        System.out.println("Preparado + "+primero.getNombreProceso() );
         _ventana.setTabla(_procesos.tamano(), _procesos);
         _ventana.setRafaga(_procesos);
+        
+        if(primero.getListaPaginasDisco() != null){
+            Cpu cpu = new Cpu();
+            cpu.cargarRamInicialmente();
+        }else{
+            Cpu cpu = new Cpu();
+            
+        }
+        
+        
         try {
                 Thread.sleep(tiempora);
             } catch (InterruptedException ex) {
@@ -37,6 +48,7 @@ public class RoundRobin {
          
          
         primero.setEstado("Ejecutando"); 
+        System.out.println("Ejecutando + "+primero.getNombreProceso() );
         try{_ventana.setTabla(_procesos.tamano(), _procesos);}catch(Exception e){}
         
         for(int a = 0 ;a< primero.getTiempoRafaga();a++){
@@ -61,6 +73,7 @@ public class RoundRobin {
                    a= primero.getTiempoRafaga();
                    orden --;
                    primero.setEstado("Preparado");
+                   System.out.println("Preparado + "+primero.getNombreProceso() );
                    try{_ventana.setTabla(_procesos.tamano(), _procesos);}catch(Exception e){}
                     
                 }
@@ -84,6 +97,7 @@ public class RoundRobin {
             } 
         if(primero.getTiempoNoEjecutado()<= 0){
         primero.setEstado("Terminado");
+        System.out.println("Terminado + "+primero.getNombreProceso() );
         }
        
         orden ++;

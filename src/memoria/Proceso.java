@@ -4,6 +4,7 @@ package memoria;
  * @author katia Chaparro
  */
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,7 @@ public class Proceso {
     private  String estado;
     private int tejecutado;
     private int tiempoNoEjecutado;
+    private ArrayList<Pagina> lista_paginas_disco;
     
     public Proceso(){
         nombreProceso = "";
@@ -31,6 +33,12 @@ public class Proceso {
         
 
 }
+    public void setListaPaginasDisco(ArrayList <Pagina> lista){
+     lista_paginas_disco = lista;
+    }
+    public ArrayList<Pagina> getListaPaginasDisco(){
+      return lista_paginas_disco;
+    }
     public int getTiempoCiclo(){
         return tiempoCiclo;
     }

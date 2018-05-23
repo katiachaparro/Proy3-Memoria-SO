@@ -10,10 +10,13 @@ public class LRU {
     Pagina []_memoriaRam;
     Pagina _nueva;
     List <Pagina> _memoriaVirtual;
-    public LRU(Pagina[] memoriaRam,Pagina nueva ,List<Pagina> memoriaVirtual){
-        _memoriaRam = memoriaRam;
+    ListaProcesos _listas;
+    public LRU(ListaProcesos lista, Pagina nueva ){
+        
+        _listas = lista;
+        _memoriaRam = lista.getArrayPaginasRam();
         _nueva = nueva;
-        _memoriaVirtual = memoriaVirtual;
+        _memoriaVirtual = lista.getListaPaginasVirtual();
         algoritmo();
     }
     public void algoritmo(){
@@ -24,7 +27,7 @@ public class LRU {
             }
         }
         }
-        
+        _listas.setArrayPaginasRam(_memoriaRam);
     }
     public boolean hayMarco(){
         boolean hay_espacio = false;
