@@ -52,12 +52,12 @@ public class Planificar {
         System.out.println("*********************");
         System.out.println("MEMORIA RAM");
         for(int i = 0;i<lista.getArrayPaginasRam().length;i++){
-            System.out.println(lista.getArrayPaginasRam()[i].getIdentificador());
+         //   System.out.println(lista.getArrayPaginasRam()[i].getIdentificador());
         }
         System.out.println("*********************");
         System.out.println("MEMORIA VIRTUAL");
         for(Pagina p :lista.getListaPaginasVirtual()){
-            System.out.println(p.getIdentificador());
+            //System.out.println(p.getIdentificador());
         }
         
     

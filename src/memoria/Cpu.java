@@ -13,10 +13,7 @@ public class Cpu {
     Pagina _paginaObtenida;
     Ventana _ventana;
     
-    public Cpu(){}
-    public Cpu(Proceso proceso){
-    _proceso = proceso;
-    }
+  
     public Cpu(ListaProcesos listas,Proceso proceso,Ventana ventana){
         _lista  = listas;
         _proceso = proceso;
@@ -82,7 +79,8 @@ public class Cpu {
         ArrayList <Pagina> _memoriaVirtual = _lista.getListaPaginasVirtual();
         
         for(int i = 0;i< _memoriaRam.length; i++){
-            if(_memoriaRam[i].getProceso() == _proceso && marco ==false){
+            
+            if(_memoriaRam[i]!=null &&_memoriaRam[i].getProceso() == _proceso && marco ==false){
                 marco = true;
                 _paginaObtenida = _memoriaRam[i];
                
@@ -123,7 +121,7 @@ public class Cpu {
             Pagina []_memoria = _lista.getArrayPaginasRam();
              
             for(int i = 0;i< _memoria.length; i++){
-                if(_memoria[i].getProceso() == _proceso && marco ==false){
+                if(_memoria[i] != null &&_memoria[i].getProceso() == _proceso && marco ==false){
                     marco = true;
                     _paginaObtenida = _memoria[i];
 

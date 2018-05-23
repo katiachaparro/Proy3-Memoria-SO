@@ -32,14 +32,11 @@ import javax.swing.border.Border;
 public class Ventana extends JFrame {
 
 	private JPanel contentPane;
-	private JTable colaProceso;
+	private JTable table_4;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
-	private JTable table_4;
-	private JTable table_5;
-	private JTable table_6;
 
 	/**
 	 * Launch the application.
@@ -80,178 +77,168 @@ public class Ventana extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.add(btnEjecutar);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cola de Proceso", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(10, 63, 664, 128);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 216, 664, 117);
+		contentPane.add(scrollPane);
 		
-		colaProceso = new JTable();
-		colaProceso.setBounds(10, 54, 390, 48);
-		panel.add(colaProceso);
-		colaProceso.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		colaProceso.setRowSelectionAllowed(false);
-		colaProceso.setEnabled(false);
-		colaProceso.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		colaProceso.setSurrendersFocusOnKeystroke(true);
-		colaProceso.setModel(new DefaultTableModel(
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBorder(new TitledBorder(null, "Memoria RAM", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		scrollPane.setViewportView(panel_1);
+		
+		table_4 = new JTable();
+		table_4.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"", null, "", null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"New column"
+			}
+		));
+		table_4.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		table_4.setBounds(34, 43, 601, 60);
+		panel_1.add(table_4);
+		
+		JLabel label_2 = new JLabel("Pagina");
+		label_2.setBounds(45, 21, 46, 14);
+		panel_1.add(label_2);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 62, 664, 128);
+		contentPane.add(scrollPane_1);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cola de Proceso", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrollPane_1.setViewportView(panel);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
 			},
 			new String[] {
-				"Proceso", "Tiempo de Rafaga", "Tiempo de Llegada", "Estado"
+				"New column", "New column", "New column", "New column"
 			}
 		));
-		
-		table = new JTable();
-		table.setBorder(new LineBorder(Color.green, 1, true));
-		table.setBounds(429, 54, 225, 20);
+
+		table.setSurrendersFocusOnKeystroke(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setRowSelectionAllowed(false);
+		table.setEnabled(false);
+		table.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		table.setBounds(10, 54, 390, 48);
 		panel.add(table);
-             //   panel.setFont(new Font(Times,10));
-		table.setModel(new DefaultTableModel(
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null}
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
 
 			},
 			new String[] {
 				"New column", "New column", "New column"
 			}
 		));
-		
-		JLabel lblProceso = new JLabel("Proceso");
-		lblProceso.setBounds(10, 29, 46, 14);
-		panel.add(lblProceso);
-		
-		JLabel lblTLlegada = new JLabel("T. Llegada");
-		lblTLlegada.setBounds(112, 29, 85, 14);
-		panel.add(lblTLlegada);
-		
-		JLabel lblTRafaga = new JLabel("T. Rafaga");
-		lblTRafaga.setBounds(220, 29, 79, 14);
-		panel.add(lblTRafaga);
-		
-		JLabel lblEstado = new JLabel("Estado");
-		lblEstado.setBounds(332, 29, 46, 14);
-		panel.add(lblEstado);
+		table_1.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		table_1.setBounds(429, 54, 225, 48);
+		panel.add(table_1);
 		
 		JLabel label = new JLabel("Proceso");
-		label.setBounds(441, 29, 46, 14);
+		label.setBounds(10, 29, 46, 14);
 		panel.add(label);
 		
-		JLabel lblPagina = new JLabel("Pagina");
-		lblPagina.setBounds(513, 29, 46, 14);
-		panel.add(lblPagina);
+		JLabel label_4 = new JLabel("T. Llegada");
+		label_4.setBounds(112, 29, 85, 14);
+		panel.add(label_4);
 		
-		JLabel lblInstruccion = new JLabel("Instruccion");
-		lblInstruccion.setBounds(592, 29, 62, 14);
-		panel.add(lblInstruccion);
+
+		JLabel label_5 = new JLabel("T. Rafaga");
+		label_5.setBounds(220, 29, 79, 14);
+		panel.add(label_5);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Memoria RAM", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel_1.setBounds(10, 202, 664, 140);
+		JLabel label_6 = new JLabel("Estado");
+		label_6.setBounds(332, 29, 46, 14);
+		panel.add(label_6);
 		
-		panel_1.setLayout(null);
+		JLabel label_7 = new JLabel("Proceso");
+		label_7.setBounds(441, 29, 46, 14);
+		panel.add(label_7);
 		
-		//table_3 = new JTable();
-		//table_3.setBounds(332, 21, 0, 0);
-		//panel_1.add(table_3);
+		JLabel label_8 = new JLabel("Pagina");
+		label_8.setBounds(513, 29, 46, 14);
+		panel.add(label_8);
 		
-		//table_2 = new JTable();
-		//table_2.setBounds(337, 21, 0, 0);
-		//panel_1.add(table_2);
+		JLabel label_9 = new JLabel("Instruccion");
+		label_9.setBounds(592, 29, 62, 14);
+		panel.add(label_9);
 		
-		//table_1 = new JTable();
-		//table_1.setBounds(342, 21, 0, 0);
-		//panel_1.add(table_1);
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 357, 664, 128);
+		contentPane.add(scrollPane_2);
 		
-		table_4 = new JTable();
-		table_4.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table_4.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{null},
-				{null},
-                                {null},
-				{null},
-				{null},
-                                {null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"Pagina"
-			}
-		));
-                JLabel lblPagina_1 = new JLabel("Pagina");
-		lblPagina_1.setBounds(45, 10, 46, 14);
-		panel_1.add(lblPagina_1);
-                
-                
-		table_4.setBounds(32, 25, 601, 97);
-		table_4.setAutoscrolls(true);
-	
-                panel_1.add(table_4);
-		contentPane.add(panel_1);
-                
-                
+
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Memoria Virtual", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_2.setBounds(10, 352, 664, 128);
-		contentPane.add(panel_2);
 		panel_2.setLayout(null);
+		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Memoria Virtual", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrollPane_2.setViewportView(panel_2);
 		
-		table_5 = new JTable();
-		table_5.setModel(new DefaultTableModel(
+		table_2 = new JTable();
+		table_2.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null},
 				{null},
 				{null},
 			},
 			new String[] {
-				"Pagina"
+				"New column"
 			}
 		));
-		table_5.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table_5.setBounds(34, 46, 601, 60);
-		panel_2.add(table_5);
+		table_2.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		table_2.setBounds(34, 46, 601, 60);
+		panel_2.add(table_2);
 		
 		JLabel label_1 = new JLabel("Pagina");
 		label_1.setBounds(47, 21, 46, 14);
 		panel_2.add(label_1);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Historial", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_3.setBounds(10, 500, 664, 128);
-		contentPane.add(panel_3);
-		panel_3.setLayout(null);
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(10, 514, 664, 127);
+		contentPane.add(scrollPane_3);
 		
-		table_6 = new JTable();
-		table_6.setModel(new DefaultTableModel(
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Historial", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrollPane_3.setViewportView(panel_3);
+		
+		table_3 = new JTable();
+		table_3.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
 				{null, null},
 			},
 			new String[] {
-				"Proceso", "Pagina"
+				"New column", "New column"
 			}
 		));
-		table_6.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table_6.setBounds(30, 46, 611, 60);
-		panel_3.add(table_6);
+		table_3.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		table_3.setBounds(30, 46, 611, 60);
+		panel_3.add(table_3);
 		
-		JLabel lblProceso_1 = new JLabel("Proceso");
-		lblProceso_1.setBounds(53, 21, 46, 14);
-		panel_3.add(lblProceso_1);
-		
-		JLabel label_3 = new JLabel("Pagina");
-		label_3.setBounds(366, 21, 46, 14);
+		JLabel label_3 = new JLabel("Proceso");
+		label_3.setBounds(53, 21, 46, 14);
 		panel_3.add(label_3);
-		colaProceso.getColumnModel().getColumn(0).setPreferredWidth(106);
-		colaProceso.getColumnModel().getColumn(1).setPreferredWidth(123);
-		colaProceso.getColumnModel().getColumn(2).setPreferredWidth(118);
+		
+		JLabel label_10 = new JLabel("Pagina");
+		label_10.setBounds(366, 21, 46, 14);
+		panel_3.add(label_10);
 	}
       public void setTabla(int tamano, ListaProcesos lista){
         try{
@@ -264,9 +251,9 @@ public class Ventana extends JFrame {
               arreglo[i][3] = _proceso.getEstado();        
         }
         //_procesos= lista;
-        colaProceso.removeAll();
-        colaProceso.setBorder(new LineBorder(Color.red, 1, true));
-        colaProceso.setModel(new DefaultTableModel(
+        table.removeAll();
+        table.setBorder(new LineBorder(Color.red, 1, true));
+        table.setModel(new DefaultTableModel(
              arreglo,
               new String [] {
                  "Proceso", "Tiempo de Rafaga", "Tiempo de Llegada", "Estado"
@@ -288,8 +275,11 @@ public class Ventana extends JFrame {
              if(_pagina != null){
                 // System.out.println(_pagina.getProceso().getTiempoRafaga());
                  System.out.println(_pagina.getIdentificador());
-                 arreglo[i][0] = "Proceso: "+ _pagina.getProceso().getNombreProceso() +  "  cod_pag: " +String.valueOf(_pagina.getIdentificador());
-             }        
+                 if(_pagina.getIdentificador()>0){
+                     arreglo[i][0] = "Proceso: "+ _pagina.getProceso().getNombreProceso() +  "  cod_pag: " +String.valueOf(_pagina.getIdentificador());
+     
+                 }
+               }        
         }
         table_4.removeAll();
         table_4.setBorder(new LineBorder(Color.red, 1, true));
@@ -314,10 +304,10 @@ public class Ventana extends JFrame {
                  arreglo[i][0] = "Proceso: "+ _pagina.getProceso().getNombreProceso() +  "  cod_pag: " +String.valueOf(_pagina.getIdentificador());
              }        
         }
-        table_5.removeAll();
-        table_5.setBorder(new LineBorder(Color.red, 1, true));
-        table_5.setAutoscrolls(true);
-        table_5.setModel(new DefaultTableModel(
+        table_2.removeAll();
+        table_2.setBorder(new LineBorder(Color.red, 1, true));
+        table_2.setAutoscrolls(true);
+        table_2.setModel(new DefaultTableModel(
              arreglo,
               new String [] {
                  "Pagina"

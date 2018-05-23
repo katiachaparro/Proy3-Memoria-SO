@@ -47,6 +47,8 @@ public class RoundRobin {
          
         primero.setEstado("Ejecutando"); 
         System.out.println("Ejecutando + "+primero.getNombreProceso() );
+        
+      
         try{_ventana.setTabla(_procesos.tamano(), _procesos);}catch(Exception e){}
          
         try {
@@ -61,7 +63,9 @@ public class RoundRobin {
             
             //EJECUTAMOS UNA PAGINA
             Cpu c = new Cpu(_procesos,primero,_ventana);
-            
+             
+            c.ejecutamosPagina();
+        
             
             //try{_ventana.setRafaga(_procesos);}catch(Exception e){};
             _procesos.setRafaga(_procesos.getRafaga() + 1);
