@@ -1,4 +1,4 @@
--netbeans{tiempoLL: 3; tiempoR: 2; marco: [
+-netbeans{tiempoLL: 3; tiempoR: 4; marco: [
 1:
 abrir/n
 escribir/n
@@ -20,7 +20,7 @@ escribir/n
 guardar/n
 cerrar
 ]}
--google{tiempoLL: 1; tiempoR: 1; marco: [
+-google{tiempoLL: 1; tiempoR: 4; marco: [
 5:
 abrir/n
 escribir/n
@@ -42,7 +42,7 @@ escribir/n
 guardar/n
 cerrar
 ]}
--sublime{tiempoLL: 2; tiempoR: 3; marco: [
+-sublime{tiempoLL: 2; tiempoR: 8; marco: [
 9:
 abrir/n
 escribir/n

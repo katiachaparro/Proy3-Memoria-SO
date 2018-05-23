@@ -15,13 +15,19 @@ import java.util.List;
 public class Pagina {
     Proceso _padre;
     int _identificador;
-    List <String> _instrucciones;
+    ArrayList <String> _instrucciones;
     boolean _procesado = false;
     
     public Pagina(Proceso padre,int identificador){
         _identificador = identificador;
         _padre = padre;
-        _instrucciones = new ArrayList<>();
+        _instrucciones = new ArrayList<String>();
+    }
+    public Proceso getProceso(){
+        return _padre;
+    }
+    public int getIdentificador(){
+        return _identificador;
     }
     public void add_instruccion(String instruccion){
         _instrucciones.add(instruccion);
@@ -29,8 +35,8 @@ public class Pagina {
     public List<String> getListadeInstrucciones(){
         return _instrucciones;
     }
-    public String getInstruccion(int posicion){
-        return _instrucciones.get(posicion);
+    public ArrayList<String> getInstruccion(){
+        return _instrucciones;
     } 
     public void procesado(){
         _procesado = true;

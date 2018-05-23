@@ -342,7 +342,7 @@ public class Principal extends javax.swing.JFrame {
  
     public void setTabla(int tamano, ListaProcesos lista){
        try{
-       System.out.println("tamaño" + tamano);
+       //System.out.println("tamaño" + tamano);
        String arreglo [][] = new String [3][4];
        for(int i = 0;i<tamano; i++){
             Proceso _proceso = lista.getProceso(i);
@@ -397,4 +397,3 @@ public class Principal extends javax.swing.JFrame {
     private JLabel contadorRafaga;
 
 }
-

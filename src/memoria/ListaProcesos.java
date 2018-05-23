@@ -12,7 +12,7 @@ public class ListaProcesos {
     private final ArrayList<Proceso> list;
     private int rafaga =0;
     private int quantun = 4;
-    private ArrayList<Pagina> lista_paginas_virtual;
+    private ArrayList<Pagina> lista_paginas_virtual = new ArrayList<Pagina>();
     private Pagina[] lista_paginas_ram;
    // private Principal principal = null;
     public ListaProcesos(){
@@ -122,7 +122,7 @@ public class ListaProcesos {
             proceso.setTiempoLlegada(Integer.parseInt(tiempoLlArray[1].trim()));
             //Obetengo el tiempo de rafaga
             String tiempoRArray [] = attrArray[1].split(":"); 
-            proceso.setTiempoLlegada(Integer.parseInt(tiempoRArray[1].trim()));
+            proceso.setTiempoRafaga(Integer.parseInt(tiempoRArray[1].trim()));
             //Obtengo las paginas
             int inicioP= attrArray[2].indexOf("[") +1;
             int finP = attrArray[2].indexOf("]");
@@ -141,9 +141,10 @@ public class ListaProcesos {
                 }
                 //guardo la pagina en el proceso
                 proceso.agregarPagina(pag);
-                //guardo el proceso en la pagina
-                list.add(proceso);
+                
             }
+            //guardo el proceso en la pagina
+            list.add(proceso);
          }
     }
     public ListaProcesos ordenarPorTiempoLlegada(ListaProcesos lista,int orden){
