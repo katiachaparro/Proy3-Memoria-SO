@@ -23,6 +23,9 @@ public class Pagina {
         _padre = padre;
         _instrucciones = new ArrayList<String>();
     }
+    public Proceso getProceso(){
+        return _padre;
+    }
     public int getIdentificador(){
         return _identificador;
     }

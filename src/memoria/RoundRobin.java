@@ -30,13 +30,14 @@ public class RoundRobin {
         _ventana.setTabla(_procesos.tamano(), _procesos);
         _ventana.setRafaga(_procesos);
         
+        // si tenemos las paginas en disco duro , las cargamos en ram y virtual
         if(primero.getListadePagina()!= null){
             Cpu cpu = new Cpu(_procesos,primero);
             cpu.cargarRamInicialmente();
-        }else{
-            Cpu cpu = new Cpu();
+        }//else{
+        //    Cpu cpu = new Cpu();
             
-        }
+        //}
         
         
         try {
@@ -58,8 +59,8 @@ public class RoundRobin {
             _procesos.setRafaga(_procesos.getRafaga() + 1);
             
             
-            System.out.println(primero.getNombreProceso());
-            System.out.println(primero.getTEjecutado());
+            //System.out.println(primero.getNombreProceso());
+            //System.out.println(primero.getTEjecutado());
             
             
             if(orden +1 < _procesos.tamano() && primero.getTEjecutado()!= primero.getTiempoRafaga()){

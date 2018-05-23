@@ -20,7 +20,7 @@ public class Proceso {
     private  String estado;
     private int tejecutado;
     private int tiempoNoEjecutado;
-    private final ArrayList<Pagina> list_pagina;
+    private  ArrayList<Pagina> list_pagina;
     
     public Proceso(){
         nombreProceso = "";
@@ -37,6 +37,9 @@ public class Proceso {
 }
     public ArrayList<Pagina> getListadePagina(){
         return list_pagina;
+    }
+    public void setListadePagina(ArrayList<Pagina> pagina){
+         list_pagina = pagina;
     }
         public void agregarPagina(Pagina p){
             list_pagina.add(p);

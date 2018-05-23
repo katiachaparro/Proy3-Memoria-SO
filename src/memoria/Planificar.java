@@ -58,7 +58,7 @@ public class Planificar {
             System.out.println(p.getIdentificador());
         }
         
-   
+    
        
     }
     

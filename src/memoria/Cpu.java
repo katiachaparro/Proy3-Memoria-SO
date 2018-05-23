@@ -10,7 +10,7 @@ public class Cpu {
     Proceso _proceso;
     int _totalDePaginas;
     ListaProcesos _lista;
-    
+    Pagina _paginaObtenida;
     
     public Cpu(){}
     public Cpu(Proceso proceso){
@@ -65,11 +65,44 @@ public class Cpu {
         }
         
         
-        
-        
+        // eliminamos las paginas del proceso
+        _proceso.setListadePagina(null);
         
     }
     // si ya no tiene sus paginas, utilizar el metodo que 
     // trae las paginas que necesita segun su quantun
+    public void ejecutamosPagina(){
+        boolean marco =false ;
+       
+        
+        // si esta en ram lo obtenemos , liberamos ram y movemos 
+        Pagina _memoriaRam[] = _lista.getArrayPaginasRam();
+        for(int i = 0;i< _memoriaRam.length; i++){
+            if(_memoriaRam[i].getProceso() == _proceso && marco ==false){
+                marco = true;
+                _paginaObtenida = _memoriaRam[i];
+                break;
+            }
+            if(marco == true && i+1 < _memoriaRam.length){
+                _memoriaRam[i] = _memoriaRam[i+1];
+            }
+            if(marco == true && i+1 == _memoriaRam.length){
+                _memoriaRam[i]= null;
+            }
+        }
+        
+        // si no esta en RAM
+        // verificar virtual, cargar a Ram y devolver pagina
+        
+    }
     
+    public boolean hayMarco(Pagina[] _memoriaRam){
+        boolean hay_espacio = false;
+        for (Pagina _memoriaRam1 : _memoriaRam) {
+            if (_memoriaRam1 == null) {
+                hay_espacio = true;
+            }
+        }
+       return hay_espacio;
+    }
 }
