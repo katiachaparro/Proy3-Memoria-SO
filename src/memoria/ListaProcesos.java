@@ -11,14 +11,24 @@ import java.util.logging.Logger;
 public class ListaProcesos {
     private final ArrayList<Proceso> list;
     private int rafaga =0;
-    private int quantun = 4;
+    private int quantun = 1;
     private ArrayList<Pagina> lista_paginas_virtual = new ArrayList<Pagina>();
     private Pagina[] lista_paginas_ram;
+    private Pagina pagina_ejecutada;
+    private ArrayList<Pagina> historial  = new ArrayList<Pagina>();
+    public ArrayList<Pagina> getHistorial(){
+        return historial;
+    }
    // private Principal principal = null;
     public ListaProcesos(){
         list = new ArrayList<>();
     }
-    
+    public void setPagina(Pagina pag){
+        pagina_ejecutada = pag;
+    }
+    public Pagina getPagina(){
+        return pagina_ejecutada;
+    }
     /*public void setPrincipal(Principal princi){
         principal = princi;
     }  

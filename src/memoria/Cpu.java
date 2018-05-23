@@ -12,12 +12,14 @@ public class Cpu {
     ListaProcesos _lista;
     Pagina _paginaObtenida;
     Ventana _ventana;
+    int _tiempo;
     
   
-    public Cpu(ListaProcesos listas,Proceso proceso,Ventana ventana){
+    public Cpu(ListaProcesos listas,Proceso proceso,Ventana ventana,int tiempo){
         _lista  = listas;
         _proceso = proceso;
         _ventana = ventana;
+        _tiempo = tiempo;
     }
     // cuando tiene todas sus paginas
     public void cargarRamInicialmente(){
@@ -42,7 +44,7 @@ public class Cpu {
         //grabamos en memoria Ram los 3 aleatorios
         for(int i=0;i<3;i++){
             
-            LRU algoritmo = new LRU(_lista,_proceso.getListadePagina().get(numeros_aleatorios[i]),_ventana);
+            LRU algoritmo = new LRU(_lista,_proceso.getListadePagina().get(numeros_aleatorios[i]),_ventana,_tiempo);
             System.out.println("cargado en memoria la pagina" +_proceso.getListadePagina().get(numeros_aleatorios[i]).getIdentificador() );
            
             paginas.add(_proceso.getListadePagina().get(numeros_aleatorios[i]));
@@ -98,6 +100,18 @@ public class Cpu {
             //seteamo ram
             _lista.setArrayPaginasRam(_memoriaRam);
             _ventana.setRam(_lista.getArrayPaginasRam());
+           
+            System.out.println("encontre la pagina");
+            _lista.setPagina(_paginaObtenida);
+            _ventana.setPagina(_paginaObtenida,_lista);
+            
+            
+            
+            try {
+                Thread.sleep(_tiempo);
+            } catch (InterruptedException ex) {
+                //Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
+            }  
             //pintar ram
             //pintar pagina
             
@@ -113,7 +127,7 @@ public class Cpu {
             // actualizar el virtual en UI
             _ventana.setVirtual(_lista.getListaPaginasVirtual());
             
-            LRU algoritmo = new LRU(_lista,pagObtenida,_ventana);
+            LRU algoritmo = new LRU(_lista,pagObtenida,_ventana,_tiempo);
             
             // actualizar ram en UI
              _ventana.setRam(_lista.getArrayPaginasRam());
@@ -133,6 +147,15 @@ public class Cpu {
                     _memoria[i]= null;
                 }
             }
+            
+            _lista.setPagina(_paginaObtenida);
+            _ventana.setPagina(_paginaObtenida,_lista);
+            _lista.setArrayPaginasRam(_lista.getArrayPaginasRam());
+            try {
+                Thread.sleep(_tiempo);
+            } catch (InterruptedException ex) {
+                //Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
+            } 
             // ACTUALIZAR LA PAGINA OBTENIDA Y PROCESADA
             
           

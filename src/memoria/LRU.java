@@ -13,13 +13,15 @@ public class LRU {
     List <Pagina> _memoriaVirtual;
     ListaProcesos _listas;
     Ventana _ventana;
-    public LRU(ListaProcesos lista, Pagina nueva,Ventana ventana ){
+    int _tiempo;
+    public LRU(ListaProcesos lista, Pagina nueva,Ventana ventana ,int tiempo){
         
         _listas = lista;
         _memoriaRam = lista.getArrayPaginasRam();
         _nueva = nueva;
         _memoriaVirtual = lista.getListaPaginasVirtual();
         _ventana = ventana;
+        _tiempo= tiempo;
         algoritmo();
     }
     public void algoritmo(){
@@ -46,6 +48,11 @@ public class LRU {
         }
         _ventana.setRam(_listas.getArrayPaginasRam());
         _ventana.setVirtual(_listas.getListaPaginasVirtual());
+         try {
+                Thread.sleep(_tiempo);
+            } catch (InterruptedException ex) {
+                //Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
+            }  
     }
     public boolean hayMarco(){
         boolean hay_espacio = false;
