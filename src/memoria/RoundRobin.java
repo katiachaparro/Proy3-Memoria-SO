@@ -34,11 +34,7 @@ public class RoundRobin {
         if(primero.getListadePagina()!= null){
             Cpu cpu = new Cpu(_procesos,primero);
             cpu.cargarRamInicialmente();
-        }//else{
-        //    Cpu cpu = new Cpu();
-            
-        //}
-        
+        }
         
         try {
                 Thread.sleep(tiempora);
@@ -51,16 +47,24 @@ public class RoundRobin {
         primero.setEstado("Ejecutando"); 
         System.out.println("Ejecutando + "+primero.getNombreProceso() );
         try{_ventana.setTabla(_procesos.tamano(), _procesos);}catch(Exception e){}
-        
+         
+        try {
+                Thread.sleep(tiempora);
+            } catch (InterruptedException ex) {
+                //Logger.getLogger(SJF.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+         
         for(int a = 0 ;a< primero.getTiempoRafaga();a++){
             // ejecutamos el proceso, una rafaga a la vez
             primero.setTEjecutado(primero.getTEjecutado() + 1);
+            
+            //EJECUTAMOS UNA PAGINA
+            Cpu c = new Cpu(_procesos,primero);
+            
+            
             try{_ventana.setRafaga(_procesos);}catch(Exception e){};
             _procesos.setRafaga(_procesos.getRafaga() + 1);
             
-            
-            //System.out.println(primero.getNombreProceso());
-            //System.out.println(primero.getTEjecutado());
             
             
             if(orden +1 < _procesos.tamano() && primero.getTEjecutado()!= primero.getTiempoRafaga()){

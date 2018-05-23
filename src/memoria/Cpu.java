@@ -77,11 +77,13 @@ public class Cpu {
         
         // si esta en ram lo obtenemos , liberamos ram y movemos 
         Pagina _memoriaRam[] = _lista.getArrayPaginasRam();
+        ArrayList <Pagina> _memoriaVirtual = _lista.getListaPaginasVirtual();
+        
         for(int i = 0;i< _memoriaRam.length; i++){
             if(_memoriaRam[i].getProceso() == _proceso && marco ==false){
                 marco = true;
                 _paginaObtenida = _memoriaRam[i];
-                break;
+               
             }
             if(marco == true && i+1 < _memoriaRam.length){
                 _memoriaRam[i] = _memoriaRam[i+1];
@@ -89,6 +91,46 @@ public class Cpu {
             if(marco == true && i+1 == _memoriaRam.length){
                 _memoriaRam[i]= null;
             }
+        }
+        
+        // estaba en Ram , actualizar UI
+        if (marco == true){
+            //pintar ram
+            //pintar pagina
+            
+        }else{
+            Pagina pagObtenida = new Pagina();
+            for(Pagina p : _memoriaVirtual){
+                if(p.getProceso() == _proceso){
+                    pagObtenida = p;
+                }
+            }
+            _lista.getListaPaginasVirtual().remove(pagObtenida);
+            
+            // actualizar el virtual en UI
+            
+            LRU algoritmo = new LRU(_lista,pagObtenida);
+            
+            // actualizar ram en UI
+            
+            Pagina []_memoria = _lista.getArrayPaginasRam();
+             
+            for(int i = 0;i< _memoria.length; i++){
+                if(_memoria[i].getProceso() == _proceso && marco ==false){
+                    marco = true;
+                    _paginaObtenida = _memoria[i];
+
+                }
+                if(marco == true && i+1 < _memoria.length){
+                    _memoria[i] = _memoria[i+1];
+                }
+                if(marco == true && i+1 == _memoria.length){
+                    _memoria[i]= null;
+                }
+            }
+            // ACTUALIZAR LA PAGINA OBTENIDA Y PROCESADA
+
+          
         }
         
         // si no esta en RAM

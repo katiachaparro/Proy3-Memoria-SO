@@ -17,7 +17,7 @@ public class Pagina {
     int _identificador;
     ArrayList <String> _instrucciones;
     boolean _procesado = false;
-    
+    public Pagina(){}
     public Pagina(Proceso padre,int identificador){
         _identificador = identificador;
         _padre = padre;
