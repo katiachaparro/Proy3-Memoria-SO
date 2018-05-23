@@ -63,7 +63,7 @@ public class Cpu {
          
         }
         
-        
+        _ventana.setVirtual(_lista.getListaPaginasVirtual());
         // eliminamos las paginas del proceso
         _proceso.setListadePagina(null);
         
@@ -97,7 +97,7 @@ public class Cpu {
         if (marco == true){
             //seteamo ram
             _lista.setArrayPaginasRam(_memoriaRam);
-             _ventana.setRam(_lista.getArrayPaginasRam());
+            _ventana.setRam(_lista.getArrayPaginasRam());
             //pintar ram
             //pintar pagina
             

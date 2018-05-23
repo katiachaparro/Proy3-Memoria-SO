@@ -205,7 +205,7 @@ public class Ventana extends JFrame {
 				"New column"
 			}
 		));
-		table_2.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		table_2.setBorder(new LineBorder(Color.green, 1, true));
 		table_2.setBounds(22, 46, 601, 60);
 		panel_2.add(table_2);
 		
@@ -282,7 +282,7 @@ public class Ventana extends JFrame {
                 // System.out.println(_pagina.getProceso().getTiempoRafaga());
                  System.out.println(_pagina.getIdentificador());
                  if(_pagina.getIdentificador()>0){
-                     arreglo[i][0] = "Proceso: "+ _pagina.getProceso().getNombreProceso() +  "  cod_pag: " +String.valueOf(_pagina.getIdentificador());
+                     arreglo[i][0] ="cod_pag: " +String.valueOf(_pagina.getIdentificador())+ " Proceso: "+ _pagina.getProceso().getNombreProceso();
      
                  }
                }        
@@ -304,11 +304,11 @@ public class Ventana extends JFrame {
         String arreglo [][] = new String [10][1];
         for(int i = 0;i<_memoriaV.size(); i++){
              Pagina _pagina = _memoriaV.get(i);
-             if(_pagina != null){
+             
                 // System.out.println(_pagina.getProceso().getTiempoRafaga());
                  System.out.println(_pagina.getIdentificador());
-                 arreglo[i][0] = "Proceso: "+ _pagina.getProceso().getNombreProceso() +  "  cod_pag: " +String.valueOf(_pagina.getIdentificador());
-             }        
+                 arreglo[i][0] = "cod_pag: " +String.valueOf(_pagina.getIdentificador())+ " Proceso: "+ _pagina.getProceso().getNombreProceso();
+                    
         }
         table_2.removeAll();
         table_2.setBorder(new LineBorder(Color.red, 1, true));

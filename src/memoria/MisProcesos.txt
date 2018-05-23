@@ -42,7 +42,7 @@ escribir/n
 guardar/n
 cerrar
 ]}
--sublime{tiempoLL: 2; tiempoR: 8; marco: [
+-sublime{tiempoLL: 2; tiempoR: 4; marco: [
 9:
 abrir/n
 escribir/n

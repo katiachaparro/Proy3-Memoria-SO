@@ -62,10 +62,9 @@ public class RoundRobin {
             primero.setTEjecutado(primero.getTEjecutado() + 1);
             
             //EJECUTAMOS UNA PAGINA
-            Cpu c = new Cpu(_procesos,primero,_ventana);
-             
+            Cpu c = new Cpu(_procesos,primero,_ventana);        
             c.ejecutamosPagina();
-        
+     
             
             //try{_ventana.setRafaga(_procesos);}catch(Exception e){};
             _procesos.setRafaga(_procesos.getRafaga() + 1);
