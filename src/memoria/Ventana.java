@@ -18,6 +18,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -293,7 +296,7 @@ public class Ventana extends JFrame {
                 // System.out.println(_pagina.getProceso().getTiempoRafaga());
                  System.out.println(_pagina.getIdentificador());
                  if(_pagina.getIdentificador()>0){
-                     arreglo[i][0] ="cod_pag: " +String.valueOf(_pagina.getIdentificador())+ " Proceso: "+ _pagina.getProceso().getNombreProceso();
+                     arreglo[i][0] = "Proceso: "+ _pagina.getProceso().getNombreProceso() +  "  cod_pag: " +String.valueOf(_pagina.getIdentificador());
      
                  }
                }        
@@ -311,28 +314,44 @@ public class Ventana extends JFrame {
        
         this.validate();
     }
+    
+    
      public void setVirtual(ArrayList<Pagina> _memoriaV ){
-        String arreglo [][] = new String [_memoriaV.size()][1];
-        for(int i = 0;i<_memoriaV.size(); i++){
-             Pagina _pagina = _memoriaV.get(i);
-             
-                // System.out.println(_pagina.getProceso().getTiempoRafaga());
-                 System.out.println(_pagina.getIdentificador());
-                 arreglo[i][0] = "cod_pag: " +String.valueOf(_pagina.getIdentificador())+ " Proceso: "+ _pagina.getProceso().getNombreProceso();
-                    
-        }
-        table_2.removeAll();
-        table_2.setBorder(new LineBorder(Color.red, 1, true));
-        table_2.setAutoscrolls(true);
-        table_2.setModel(new DefaultTableModel(
-             arreglo,
-              new String [] {
-                 "Pagina"
-              }
-          ));
+    	 BufferedWriter out = null; 
+
+        try  {
+        	out = new BufferedWriter(new FileWriter("/Memoria/src/memoria/MemoriaVirtual.txt", true)); 
+            String arreglo [][] = new String [_memoriaV.size()][1];
+            for(int i = 0;i<_memoriaV.size(); i++){
+                 Pagina _pagina = _memoriaV.get(i);
+                 
+                    // System.out.println(_pagina.getProceso().getTiempoRafaga());
+                     System.out.println(_pagina.getIdentificador());
+                     arreglo[i][0] = "cod_pag: " +String.valueOf(_pagina.getIdentificador())+ " Proceso: "+ _pagina.getProceso().getNombreProceso();
+                     out.write(arreglo[i][0]+"/n");
+                     out.newLine(); 
+            }
+            table_2.removeAll();
+            table_2.setBorder(new LineBorder(Color.red, 1, true));
+            table_2.setAutoscrolls(true);
+            table_2.setModel(new DefaultTableModel(
+                 arreglo,
+                  new String [] {
+                     "Pagina"
+                  }
+              ));
         
-       
         this.validate();
+        }catch (IOException ex) {
+            System.out.println(ex);
+       }finally{
+    	   	//cerrar los flujos de datos
+            if(out!=null){
+                try{
+                    out.close();
+                }catch(IOException ex){}
+            }
+       }
     }
     public void setPagina(Pagina pagina, ListaProcesos lista){
         if(pagina!=null){
