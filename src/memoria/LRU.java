@@ -1,3 +1,4 @@
+
 package memoria;
 
 import java.util.List;
@@ -11,12 +12,14 @@ public class LRU {
     Pagina _nueva;
     List <Pagina> _memoriaVirtual;
     ListaProcesos _listas;
-    public LRU(ListaProcesos lista, Pagina nueva ){
+    Ventana _ventana;
+    public LRU(ListaProcesos lista, Pagina nueva,Ventana ventana ){
         
         _listas = lista;
         _memoriaRam = lista.getArrayPaginasRam();
         _nueva = nueva;
         _memoriaVirtual = lista.getListaPaginasVirtual();
+        _ventana = ventana;
         algoritmo();
     }
     public void algoritmo(){
@@ -41,7 +44,8 @@ public class LRU {
             _memoriaRam[_memoriaRam.length - 1] = _nueva;
             _listas.setArrayPaginasRam(_memoriaRam);
         }
-        
+        _ventana.setRam(_listas.getArrayPaginasRam());
+        _ventana.setVirtual(_listas.getListaPaginasVirtual());
     }
     public boolean hayMarco(){
         boolean hay_espacio = false;

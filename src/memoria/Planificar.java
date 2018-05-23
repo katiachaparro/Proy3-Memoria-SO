@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -41,10 +42,11 @@ public class Planificar {
         //Cpu a = new Cpu(p);
         //a.cargarRamInicialmente();
         //System.out.println(p.getEstado());
-        Principal a = new Principal();
+        //Principal a = new Principal();
+        Ventana a = new Ventana();
         a.setVisible(true);
         //int duracionRafaga= 1;
-        RoundRobin r = new RoundRobin(lista,a,10000);
+        RoundRobin r = new RoundRobin(lista,a,1000);
         
         
         System.out.println("*********************");

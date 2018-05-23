@@ -397,4 +397,3 @@ public class Principal extends javax.swing.JFrame {
     private JLabel contadorRafaga;
 
 }
-

@@ -1,3 +1,4 @@
+
 package memoria;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -7,12 +8,12 @@ import java.util.logging.Logger;
  */
 public class RoundRobin {
     private ListaProcesos _procesos;
-    private Principal _ventana;
+    private Ventana _ventana;
     private int orden = 0;
     private boolean condicion = true;
     private boolean rafaga = true;
     private int tiempora;
-    public RoundRobin(ListaProcesos procesos,Principal ventana,int tiemporafaga){
+    public RoundRobin(ListaProcesos procesos,Ventana ventana,int tiemporafaga){
         _procesos = procesos;
         _ventana = ventana;
         _procesos = _procesos.ordenarPorTiempoLlegada(_procesos,0);
@@ -28,11 +29,11 @@ public class RoundRobin {
         primero.setEstado("Preparado");
         System.out.println("Preparado + "+primero.getNombreProceso() );
         _ventana.setTabla(_procesos.tamano(), _procesos);
-        _ventana.setRafaga(_procesos);
+        //_ventana.setRafaga(_procesos);
         
         // si tenemos las paginas en disco duro , las cargamos en ram y virtual
         if(primero.getListadePagina()!= null){
-            Cpu cpu = new Cpu(_procesos,primero);
+            Cpu cpu = new Cpu(_procesos,primero,_ventana);
             cpu.cargarRamInicialmente();
         }
         
@@ -59,10 +60,10 @@ public class RoundRobin {
             primero.setTEjecutado(primero.getTEjecutado() + 1);
             
             //EJECUTAMOS UNA PAGINA
-            Cpu c = new Cpu(_procesos,primero);
+            Cpu c = new Cpu(_procesos,primero,_ventana);
             
             
-            try{_ventana.setRafaga(_procesos);}catch(Exception e){};
+            //try{_ventana.setRafaga(_procesos);}catch(Exception e){};
             _procesos.setRafaga(_procesos.getRafaga() + 1);
             
             
@@ -113,8 +114,6 @@ public class RoundRobin {
         if(orden == _procesos.tamano()){
             condicion = false;
         }
-
-        }
     }
-    
+ }
 }

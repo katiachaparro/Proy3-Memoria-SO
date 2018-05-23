@@ -11,14 +11,16 @@ public class Cpu {
     int _totalDePaginas;
     ListaProcesos _lista;
     Pagina _paginaObtenida;
+    Ventana _ventana;
     
     public Cpu(){}
     public Cpu(Proceso proceso){
     _proceso = proceso;
     }
-    public Cpu(ListaProcesos listas,Proceso proceso){
+    public Cpu(ListaProcesos listas,Proceso proceso,Ventana ventana){
         _lista  = listas;
         _proceso = proceso;
+        _ventana = ventana;
     }
     // cuando tiene todas sus paginas
     public void cargarRamInicialmente(){
@@ -43,7 +45,7 @@ public class Cpu {
         //grabamos en memoria Ram los 3 aleatorios
         for(int i=0;i<3;i++){
             
-            LRU algoritmo = new LRU(_lista,_proceso.getListadePagina().get(numeros_aleatorios[i]));
+            LRU algoritmo = new LRU(_lista,_proceso.getListadePagina().get(numeros_aleatorios[i]),_ventana);
             System.out.println("cargado en memoria la pagina" +_proceso.getListadePagina().get(numeros_aleatorios[i]).getIdentificador() );
            
             paginas.add(_proceso.getListadePagina().get(numeros_aleatorios[i]));
@@ -95,6 +97,9 @@ public class Cpu {
         
         // estaba en Ram , actualizar UI
         if (marco == true){
+            //seteamo ram
+            _lista.setArrayPaginasRam(_memoriaRam);
+             _ventana.setRam(_lista.getArrayPaginasRam());
             //pintar ram
             //pintar pagina
             
@@ -108,11 +113,13 @@ public class Cpu {
             _lista.getListaPaginasVirtual().remove(pagObtenida);
             
             // actualizar el virtual en UI
+            _ventana.setVirtual(_lista.getListaPaginasVirtual());
             
-            LRU algoritmo = new LRU(_lista,pagObtenida);
+            LRU algoritmo = new LRU(_lista,pagObtenida,_ventana);
             
             // actualizar ram en UI
-            
+             _ventana.setRam(_lista.getArrayPaginasRam());
+             
             Pagina []_memoria = _lista.getArrayPaginasRam();
              
             for(int i = 0;i< _memoria.length; i++){
@@ -129,7 +136,7 @@ public class Cpu {
                 }
             }
             // ACTUALIZAR LA PAGINA OBTENIDA Y PROCESADA
-
+            
           
         }
         

@@ -142,8 +142,8 @@ public class ListaProcesos {
                 //guardo la pagina en el proceso
                 proceso.agregarPagina(pag);
                 
-                
             }
+            //guardo el proceso en la pagina
             list.add(proceso);
          }
     }
